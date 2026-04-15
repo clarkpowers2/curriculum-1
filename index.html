@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Private Tutor</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>📚 Private Tutor</h1>
+    <nav>
+      <button class="nav-btn active" data-view="lessons">Lessons</button>
+      <button class="nav-btn" data-view="flashcards">Flashcards</button>
+      <button class="nav-btn" data-view="quiz">Quiz</button>
+      <button class="nav-btn" data-view="progress">Progress</button>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Lessons View -->
+    <section id="view-lessons" class="view active">
+      <h2>Lessons</h2>
+      <div class="lesson-controls">
+        <select id="subject-filter">
+          <option value="all">All Subjects</option>
+        </select>
+        <button id="add-lesson-btn" class="btn btn-primary">+ Add Lesson</button>
+      </div>
+      <div id="lesson-list" class="card-grid"></div>
+
+      <!-- Add/Edit Lesson Modal -->
+      <div id="lesson-modal" class="modal hidden">
+        <div class="modal-content">
+          <h3 id="lesson-modal-title">Add Lesson</h3>
+          <label>Subject
+            <input type="text" id="lesson-subject" placeholder="e.g. Mathematics" />
+          </label>
+          <label>Title
+            <input type="text" id="lesson-title" placeholder="e.g. Quadratic Equations" />
+          </label>
+          <label>Content
+            <textarea id="lesson-content" rows="8" placeholder="Write lesson content here…"></textarea>
+          </label>
+          <div class="modal-actions">
+            <button id="save-lesson-btn" class="btn btn-primary">Save</button>
+            <button id="cancel-lesson-btn" class="btn btn-secondary">Cancel</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Flashcards View -->
+    <section id="view-flashcards" class="view hidden">
+      <h2>Flashcards</h2>
+      <div class="lesson-controls">
+        <select id="flashcard-subject-filter">
+          <option value="all">All Subjects</option>
+        </select>
+        <button id="add-card-btn" class="btn btn-primary">+ Add Card</button>
+      </div>
+      <div id="flashcard-study" class="flashcard-container hidden">
+        <div id="flashcard" class="flashcard">
+          <div class="flashcard-inner">
+            <div class="flashcard-front">
+              <p id="card-question"></p>
+            </div>
+            <div class="flashcard-back">
+              <p id="card-answer"></p>
+            </div>
+          </div>
+        </div>
+        <div class="flashcard-controls">
+          <button id="prev-card-btn" class="btn btn-secondary">◀ Prev</button>
+          <span id="card-counter">1 / 1</span>
+          <button id="next-card-btn" class="btn btn-secondary">Next ▶</button>
+        </div>
+        <p class="hint">Click the card to reveal the answer</p>
+      </div>
+      <div id="flashcard-list" class="card-grid"></div>
+
+      <!-- Add Card Modal -->
+      <div id="card-modal" class="modal hidden">
+        <div class="modal-content">
+          <h3>Add Flashcard</h3>
+          <label>Subject
+            <input type="text" id="card-subject" placeholder="e.g. Biology" />
+          </label>
+          <label>Question
+            <textarea id="card-question-input" rows="3" placeholder="Enter question…"></textarea>
+          </label>
+          <label>Answer
+            <textarea id="card-answer-input" rows="3" placeholder="Enter answer…"></textarea>
+          </label>
+          <div class="modal-actions">
+            <button id="save-card-btn" class="btn btn-primary">Save</button>
+            <button id="cancel-card-btn" class="btn btn-secondary">Cancel</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Quiz View -->
+    <section id="view-quiz" class="view hidden">
+      <h2>Quiz</h2>
+      <div id="quiz-setup">
+        <label>Select Subject
+          <select id="quiz-subject">
+            <option value="all">All Subjects</option>
+          </select>
+        </label>
+        <label>Number of Questions
+          <input type="number" id="quiz-count" value="5" min="1" max="50" />
+        </label>
+        <button id="start-quiz-btn" class="btn btn-primary">Start Quiz</button>
+      </div>
+      <div id="quiz-session" class="hidden">
+        <div class="quiz-header">
+          <span id="quiz-progress-text">Question 1 of 5</span>
+          <span id="quiz-score-text">Score: 0</span>
+        </div>
+        <div class="quiz-question-card">
+          <p id="quiz-question-text"></p>
+          <div id="quiz-options" class="quiz-options"></div>
+          <div id="quiz-feedback" class="quiz-feedback hidden"></div>
+          <button id="quiz-next-btn" class="btn btn-primary hidden">Next Question</button>
+        </div>
+      </div>
+      <div id="quiz-results" class="hidden">
+        <h3>Quiz Complete!</h3>
+        <p id="quiz-final-score"></p>
+        <button id="quiz-retry-btn" class="btn btn-primary">Try Again</button>
+        <button id="quiz-back-btn" class="btn btn-secondary">Back to Setup</button>
+      </div>
+    </section>
+
+    <!-- Progress View -->
+    <section id="view-progress" class="view hidden">
+      <h2>Progress</h2>
+      <div id="progress-stats" class="stats-grid"></div>
+      <div id="progress-history">
+        <h3>Quiz History</h3>
+        <div id="history-list"></div>
+      </div>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
